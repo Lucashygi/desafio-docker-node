@@ -1,16 +1,13 @@
 FROM node:15
 
 
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
+WORKDIR /usr/src/app
 
+# copy app dependencies
+COPY . .
 
 # add app
-COPY . ./
-
 RUN npm install
-
 
 ENV DOCKERIZE_VERSION v0.6.1
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
